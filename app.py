@@ -247,12 +247,23 @@ def generate_summary():
         "desc": str(topic_counts) + " " + str(top_keywords_cnt) + " " + str(sentiment_counts) + " " + str(top_positive_keywords_cnt) + " " + str(top_negative_words),
     })
 
+    social_butterfly = [
+        {
+            "username": "anonymous",
+            "profileName": "anonymous",
+            "description": "I am a social butterfly",
+            "time": 5
+        }
+    ]
+
+
     return make_response(json.dumps({
         "topic_counts": topic_counts,
         "top_keyword": top_keywords_cnt,
         "sentiment": sentiment_counts,
         "most_positive_words": top_positive_keywords_cnt,
-        "most_negative_words": top_negative_words
+        "most_negative_words": top_negative_words,
+        "social_butterfly": social_butterfly
     }), 200)
 
 
