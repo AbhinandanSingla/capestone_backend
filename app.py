@@ -104,6 +104,21 @@ def csv_analysis():
     else:
         return {'error': "Error with Server"}
 
+@app.route("/single_tweet", methods=['POST'])
+def single_tweet():
+    if request.method == "POST":
+        rq = request.get_json()
+
+        from models.topic.utils import transform_topics
+        from models.sentiments.utils import predict_sentiment
+        df = pd.DataFrame({"text": [rq['tweet']]})
+        print(df["text"])
+        transformed = transform_topics(df['text'])
+        print(transformed)
+
+        return make_response(json.dumps({
+            "message": "Your topic is: " + transformed[0]
+        }), 200)
 
 @app.route("/select_column", methods=['POST'])
 def column_selected():
